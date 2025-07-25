@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "ST Token Copier",
+    "version": "1.0",
+    "description": "Copies token for Voxmg and Warehouse",
+    "host_permissions": [
+        "https://warehouse.voxships.com/*",
+        "https://demo.voxmg.com/*",
+        "https://demodev.voxmg.com/*",
+        "https://demodev.shikhartech.com/*"
+    ],
+    "permissions": [
+        "scripting",
+        "tabs",
+        "clipboardWrite"
+    ],
+    "action": {
+        "default_icon": {
+            "16": "icon.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
