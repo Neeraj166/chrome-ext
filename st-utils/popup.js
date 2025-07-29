@@ -113,15 +113,15 @@ document.getElementById('add-url-form').addEventListener('submit', (e) => {
 loadUrls();
 
 
-  const trigger = document.getElementById('tooltip-trigger');
-  const tooltip = document.getElementById('tooltip');
+const trigger = document.getElementById('tooltip-trigger');
+const tooltip = document.getElementById('tooltip');
 
-  trigger.addEventListener('mouseenter', () => {
-      tooltip.style.visibility = 'visible';
-      tooltip.style.opacity = '1';
-  });
+trigger.addEventListener('mouseenter', () => {
+    tooltip.style.visibility = 'visible';
+    tooltip.style.opacity = '1';
+});
 
-  trigger.addEventListener('mouseleave', () => {
-      tooltip.style.visibility = 'hidden';
-      tooltip.style.opacity = '0';
-  });
+trigger.addEventListener('mouseleave', () => {
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+});
