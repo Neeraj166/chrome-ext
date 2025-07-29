@@ -1,8 +1,6 @@
-chrome.action.onClicked.addListener((tab) => {
-    if (!tab || !tab.id || !tab.url) return;
-
+function executeTokenCopy(tabId) {
     chrome.scripting.executeScript({
-        target: { tabId: tab.id },
+        target: { tabId },
         func: () => {
             const url = location.href;
 
@@ -13,16 +11,16 @@ chrome.action.onClicked.addListener((tab) => {
                         localStorage.getItem('vue-session-key')
                     );
                     const token = obj?.apiToken;
-                    if (token) {
-                        navigator.clipboard
-                            .writeText(token)
-                            .then(() => console.log('voxships ApiToken copied'))
-                            .catch((err) =>
-                                console.error('Clipboard error:', err)
-                            );
-                    } else {
-                        alert('voxships apiToken not found in localStorage');
+                    if (!token) {
+                        console.error(
+                            'voxships apiToken not found in localStorage'
+                        );
+                        return;
                     }
+                    navigator.clipboard
+                        .writeText(token)
+                        .then(() => console.log('voxships ApiToken copied'))
+                        .catch((err) => console.error('Clipboard error:', err));
                 } catch (e) {
                     console.error('Failed to read voxships token:', e);
                 }
@@ -50,27 +48,39 @@ chrome.action.onClicked.addListener((tab) => {
             }
 
             if (!tokenKey) {
-                alert('Unsupported URL: No token to copy.');
+                console.error('Unsupported URL: No token to copy.');
                 return;
             }
 
             try {
                 const token = localStorage.getItem(tokenKey);
-                if (token) {
-                    navigator.clipboard
-                        .writeText(token)
-                        .then(() =>
-                            console.log(`${tokenKey} copied to clipboard.`)
-                        )
-                        .catch((err) =>
-                            console.error('Clipboard write failed:', err)
-                        );
-                } else {
-                    alert(`${tokenKey} not found in localStorage.`);
+                if (!token) {
+                    console.error('Token not found in localStorage');
+                    return;
                 }
+
+                navigator.clipboard
+                    .writeText(token)
+                    .then(() => console.log(`${tokenKey} copied to clipboard.`))
+                    .catch((err) =>
+                        console.error('Clipboard write failed:', err)
+                    );
             } catch (e) {
                 console.error('Error accessing localStorage:', e);
             }
         },
     });
+}
+
+
+// When the keyboard shortcut is triggered
+chrome.commands.onCommand.addListener((command) => {
+    if (command === 'copy-token') {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs[0];
+            if (tab?.id && tab?.url) {
+                executeTokenCopy(tab.id);
+            }
+        });
+    }
 });

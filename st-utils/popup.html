@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ST Token Copier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 400px;
+            padding: 10px;
+        }
+
+        .domain-tab {
+            margin-bottom: 5px;
+        }
+
+        .url-form {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            margin: 1px;
+            padding: 2px;
+            width: calc(100% - 10px);
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-top: 2px;
+            margin-left: 2px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .tab-btn {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background-color: #cce5ff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- copy token -->
+    <div style="margin-top: 12px; font-family: sans-serif;">
+        <span style="position: relative; display: inline-block;">
+            <span style="font-size: 13px; color: #333; cursor: default;" id="tooltip-trigger">
+                Copy Token to clipboard:
+                <kbd style="font-family: monospace;">Ctrl</kbd>+
+                <kbd style="font-family: monospace;">Shift</kbd>+
+                <kbd style="font-family: monospace;">Y</kbd>
+            </span>
+            <span id="tooltip" style="
+                    visibility: hidden;
+                    background-color: #333;
+                    color: #fff;
+                    font-size: 12px;
+                    text-align: left;
+                    padding: 6px 8px;
+                    border-radius: 4px;
+                    position: absolute;
+                    z-index: 10;
+                    bottom: 0%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    transform: translateY(100%);
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                    white-space: nowrap;
+                ">
+                Copies warehouse or voxmg token if browsed <br> on those domains.
+            </span>
+        </span>
+    </div>
+
+    <h4>Add New URL Template</h4>
+    <form id="add-url-form" style="display: flex; gap: 8px; align-items: center; width: 100%;">
+        <input type="text" id="new-url" placeholder="https://domain.com/path/{id}" required
+            style="flex: 1; padding: 6px 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+        <button type="submit"
+            style="padding: 6px 12px; font-size: 14px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+            Add
+        </button>
+    </form>
+
+    <hr />
+    <h3>Saved URLs</h3>
+    <div id="tabs" class="tabs"></div>
+    <hr />
+    <div id="url-container"></div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "ST Token Copier",
+    "name": "ST Utils",
     "version": "1.0",
-    "description": "Copies token for Voxmg and Warehouse",
+    "description": "ST Utils",
     "host_permissions": [
         "https://warehouse.voxships.com/*",
         "https://demo.voxmg.com/*",
@@ -12,14 +12,24 @@
     "permissions": [
         "scripting",
         "tabs",
-        "clipboardWrite"
+        "clipboardWrite",
+        "storage"
     ],
     "action": {
         "default_icon": {
             "16": "icon.png"
-        }
+        },
+        "default_popup": "popup.html"
     },
     "background": {
         "service_worker": "background.js"
+    },
+    "commands": {
+        "copy-token": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y"
+            },
+            "description": "Copy token from current tab"
+        }
     }
 }
