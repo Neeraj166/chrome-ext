@@ -138,20 +138,6 @@ document.getElementById('add-url-form').addEventListener('submit', (e) => {
     input.value = '';
 });
 
-// Tooltip hover
-const trigger = document.getElementById('tooltip-trigger');
-const tooltip = document.getElementById('tooltip');
-
-trigger.addEventListener('mouseenter', () => {
-    tooltip.style.visibility = 'visible';
-    tooltip.style.opacity = '1';
-});
-
-trigger.addEventListener('mouseleave', () => {
-    tooltip.style.visibility = 'hidden';
-    tooltip.style.opacity = '0';
-});
-
 // Initial load
 loadUrls();
 
