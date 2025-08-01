@@ -30,12 +30,12 @@ function executeTokenCopy(tabId) {
             // voxmg / demodev domains
             const adminDomains = [
                 'https://demo.voxmg.com/#/admin',
-                'https://demodev.voxmg.com/#/admin',
+                'https://demo.shikhartech.com/#/admin',
                 'https://demodev.shikhartech.com/#/admin',
             ];
             const memberDomains = [
                 'https://demo.voxmg.com/#/',
-                'https://demodev.voxmg.com/#/',
+                'https://demo.shikhartech.com/#/',
                 'https://demodev.shikhartech.com/#/',
             ];
 

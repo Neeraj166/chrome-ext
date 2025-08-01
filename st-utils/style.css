@@ -69,6 +69,10 @@
     .tab-btn {
         background-color: var(--light-gray) !important;
     }
+
+    .url-form span input[type="text"] {
+        background-color: var(--light-gray) !important;
+    }
 }
 
 body {

@@ -6,7 +6,7 @@
     "host_permissions": [
         "https://warehouse.voxships.com/*",
         "https://demo.voxmg.com/*",
-        "https://demodev.voxmg.com/*",
+        "https://demo.shikhartech.com/*",
         "https://demodev.shikhartech.com/*"
     ],
     "permissions": [
