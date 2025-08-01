@@ -52,8 +52,8 @@ function renderUrls(grouped) {
         const div = document.createElement('div');
         div.className = 'url-form';
 
-        const paramMatches = [...urlTemplate.matchAll(/\{(.*?)\}/g)];
         let html = urlTemplate;
+        const paramMatches = [...urlTemplate.matchAll(/\{(.*?)\}/g)];
         paramMatches.forEach((match) => {
             const name = match[1];
             html = html.replace(
@@ -82,7 +82,6 @@ function renderUrls(grouped) {
             cursor: pointer;
         `;
 
-        // Remove URL on button click
         removeBtn.addEventListener('click', (e) => {
             const encoded = e.target.dataset.url;
             const decodedUrl = decodeURIComponent(encoded);
@@ -94,10 +93,12 @@ function renderUrls(grouped) {
             });
         });
 
-        // Handle Enter key on input fields
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        const inputs = tempDiv.querySelectorAll('input[data-param]');
+        div.appendChild(contentSpan);
+        div.appendChild(removeBtn);
+        urlContainer.appendChild(div);
+
+        // Now add event listeners to inputs **after** adding to DOM
+        const inputs = contentSpan.querySelectorAll('input[data-param]');
         inputs.forEach((input) => {
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -113,14 +114,9 @@ function renderUrls(grouped) {
                 }
             });
         });
-
-        contentSpan.innerHTML = tempDiv.innerHTML;
-
-        div.appendChild(contentSpan);
-        div.appendChild(removeBtn);
-        urlContainer.appendChild(div);
     });
 }
+
 
 // Handle adding new URL
 document.getElementById('add-url-form').addEventListener('submit', (e) => {
@@ -158,3 +154,11 @@ trigger.addEventListener('mouseleave', () => {
 
 // Initial load
 loadUrls();
+
+
+// Set modifier key label based on OS
+document.addEventListener('DOMContentLoaded', () => {
+    const modifierKeyEl = document.getElementById('modifier-key');
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    modifierKeyEl.textContent = isMac ? 'Cmd' : 'Ctrl';
+});

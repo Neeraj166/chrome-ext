@@ -5,7 +5,7 @@ Browser Extension to boost productivity while working with internal tools like *
 ## 🚀 Features
 
 ### 1. Copy Token to Clipboard
-**Method**: Press `Ctrl + Shift + Y`
+**Method**: Press `Ctrl + Shift + Y`(`cmd + Shift +y` For MAC)
 *(You can change this shortcut from Chrome’s Extension Keyboard Shortcuts settings.)*
 
 
