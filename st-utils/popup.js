@@ -61,7 +61,6 @@ function renderUrls(grouped) {
                 `<input type="text"
                          style="width: 40px;"
                          placeholder="${name}"
-                         maxlength="5"
                          data-param="${name}">`
             );
         });
