@@ -66,10 +66,38 @@ function renderUrls(grouped) {
             );
         });
 
-        div.innerHTML = html;
+        const contentSpan = document.createElement('span');
+        contentSpan.innerHTML = html;
 
-        // event listeners to each input for Enter key submission
-        const inputs = div.querySelectorAll('input[data-param]');
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.dataset.url = encodeURIComponent(urlTemplate);
+        removeBtn.textContent = '❌';
+        removeBtn.style.cssText = `
+            font-size: 12px;
+            padding: 2px 6px;
+            background-color: transparent;
+            color: #c00;
+            border: none;
+            cursor: pointer;
+        `;
+
+        // Remove URL on button click
+        removeBtn.addEventListener('click', (e) => {
+            const encoded = e.target.dataset.url;
+            const decodedUrl = decodeURIComponent(encoded);
+            chrome.storage.local.get([storageKey], (data) => {
+                const urls = (data[storageKey] || []).filter(
+                    (url) => url !== decodedUrl
+                );
+                chrome.storage.local.set({ [storageKey]: urls }, loadUrls);
+            });
+        });
+
+        // Handle Enter key on input fields
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const inputs = tempDiv.querySelectorAll('input[data-param]');
         inputs.forEach((input) => {
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -86,6 +114,10 @@ function renderUrls(grouped) {
             });
         });
 
+        contentSpan.innerHTML = tempDiv.innerHTML;
+
+        div.appendChild(contentSpan);
+        div.appendChild(removeBtn);
         urlContainer.appendChild(div);
     });
 }
@@ -110,9 +142,7 @@ document.getElementById('add-url-form').addEventListener('submit', (e) => {
     input.value = '';
 });
 
-loadUrls();
-
-
+// Tooltip hover
 const trigger = document.getElementById('tooltip-trigger');
 const tooltip = document.getElementById('tooltip');
 
@@ -125,3 +155,6 @@ trigger.addEventListener('mouseleave', () => {
     tooltip.style.visibility = 'hidden';
     tooltip.style.opacity = '0';
 });
+
+// Initial load
+loadUrls();
