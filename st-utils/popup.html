@@ -9,27 +9,65 @@
 </head>
 
 <body>
-    <span id="tooltip-trigger" tabindex="0" aria-describedby="tooltip" role="tooltip">
-        Copy Token to clipboard:
-        <kbd id="modifier-key"></kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>
+    <div class="app-container">
+        <!-- Left Panel: Existing token copying utility -->
+        <div class="column left-column">
+            <span id="tooltip-trigger" tabindex="0" aria-describedby="tooltip" role="tooltip">
+                Copy Token to clipboard:
+                <kbd id="modifier-key"></kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>
 
-        <span id="tooltip" role="tooltip">
-            Copies warehouse or voxmg token if browsed <br />on those domains.
-        </span>
-    </span>
+                <span id="tooltip" role="tooltip">
+                    Copies warehouse or voxmg token if browsed <br />on those domains.
+                </span>
+            </span>
 
+            <h4>Add New URL Template</h4>
+            <form id="add-url-form" aria-label="Add new URL template">
+                <input type="text" id="new-url" placeholder="https://domain.com/path/{id}" required aria-required="true" />
+                <button type="submit">Add</button>
+            </form>
 
-    <h4>Add New URL Template</h4>
-    <form id="add-url-form" aria-label="Add new URL template">
-        <input type="text" id="new-url" placeholder="https://domain.com/path/{id}" required aria-required="true" />
-        <button type="submit">Add</button>
-    </form>
+            <hr />
+            <h3>Saved URLs</h3>
+            <div id="tabs" class="tabs" role="tablist" tabindex="0"></div>
+            <hr />
+            <div id="url-container"></div>
+        </div>
 
-    <hr />
-    <h3>Saved URLs</h3>
-    <div id="tabs" class="tabs" role="tablist" tabindex="0"></div>
-    <hr />
-    <div id="url-container"></div>
+        <!-- Center Divider -->
+        <div class="column-divider"></div>
+
+        <!-- Right Panel: Image Click Viewer configuration -->
+        <div class="column right-column">
+            <h3>Image Click Viewer</h3>
+            <div class="toggle-container">
+                <label class="switch-label" for="image-viewer-toggle">
+                    <span class="switch-text">Enable Feature (Global)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="image-viewer-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </label>
+            </div>
+
+            <!-- Current Site toggle -->
+            <div id="current-site-container" class="toggle-container" style="display: none;">
+                <label class="switch-label" for="current-site-toggle">
+                    <span class="switch-text">Enable on <strong id="current-site-name"></strong></span>
+                    <label class="switch">
+                        <input type="checkbox" id="current-site-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </label>
+            </div>
+
+            <!-- Collapsible Allowed Domains list -->
+            <details id="domains-collapsible" class="collapsible-domains">
+                <summary>Enabled Sites (<span id="domains-count">0</span>)</summary>
+                <div id="domain-list" class="domain-list"></div>
+            </details>
+        </div>
+    </div>
 
     <script src="popup.js"></script>
 </body>

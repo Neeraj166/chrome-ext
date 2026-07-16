@@ -24,6 +24,19 @@
     "background": {
         "service_worker": "background.js"
     },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "imageViewerOverlay.js",
+                "imageViewer.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
     "commands": {
         "copy-token": {
             "suggested_key": {
