@@ -34,6 +34,45 @@ https://test.com/order/{orderId}/details
 Then, simply input the `orderId`, and press **Enter** to navigate directly to the desired page.
 
 ![alt text](image.png)
+
+---
+
+### 3. Image Click Viewer
+**Method**: Use the extension popup menu
+
+**Description**:
+Turns qualifying images into click-to-preview items on selected sites.
+
+When enabled, clicking an image opens it in a fullscreen overlay with:
+
+- a dark backdrop for focus
+- click-outside-to-close behavior
+- `Esc` to close
+- basic enlargement support for URLs containing `small` or `medium`
+
+**How to use it**:
+
+1. Open the extension popup.
+2. Turn on **Enable Feature (Global)**.
+3. Add the current site with **Enable on [site]** or manage the enabled sites list manually.
+
+**Supported domains**:
+
+- The feature is applied only on domains saved in the popup.
+- `www.` prefixes are treated as the same site as the base domain.
+- Subdomains are also matched when the base domain is enabled.
+
+**Ignored image types and cases**:
+
+- `data:` and `blob:` URLs
+- SVG images and SVG data URIs
+- Images smaller than `32x32`
+- Small button icons inside buttons or button-like elements
+
+**Notes**:
+
+- The image viewer is injected through the content script, so it works on normal web pages, not browser UI pages.
+- The feature settings are stored locally in Chrome.
 ---
 
 ## 🧩 Installation

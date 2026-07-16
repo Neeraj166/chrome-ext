@@ -12,6 +12,12 @@
 ## Packages
 ### ⚙️ST-UTILS: [st-utils/README.md](st-utils/readme.md)
 
+The `st-utils` package currently includes:
+
+- token copying on supported internal tools
+- route templates for fast navigation
+- an image click viewer for enabled sites
+
 
 ## 📬 Contributions
 
